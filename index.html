@@ -1,1 +1,108 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movie</title>
+    <script type="text/javascript" src="table.js"></script>
+    <link rel="stylesheet" type="text/css" href="table.css" />
+
+</head>
+
+<body onload="initial()">
+
+    <table id="movieList">
+          <caption id="a">
+            <h2 id="t">Movie List</h2>
+        </caption>
+          <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>Duration</th>
+                <th>Movue Hall</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th></th>
+              </tr>
+        <tbody id="tbody" style="display: none">
+            <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                          <button class="deleteBtn" onclick="removeRow(this)">Delete</button>
+                        </td>
+                  </tr>
+              
+        </tbody>
+    </table>
+
+    <div style="margin:0 auto;width:200px;height:180px;">
+        <a value="Add Movie" href="#open-modal" style="text-decoration: none;color: #d2bdff; height: 40px;"
+            onclick="popLayer()">
+            <div class="button" href="#open-modal">Add Movie</div>
+        </a>
+    </div>
+
+    <div id="popLayer">
+    </div>
+
+    <div id="open-modal" class="input-window">
+        <div id="pop-up" class="tmp">
+            <div>
+                <a href="#" title="Close" class="modal-close" onclick="closeLayer()">[x]</a>
+                <h2>Please Fill All Data</h2>
+                <form name="form1">
+                    Title:
+                    <label>
+                        <input type="text" name="movieTitle" />
+                    </label>
+                    <br /> Date:
+                    <label>
+                        <input type="date" name="movieDate" id="movieDate" />
+                        <script>
+                            function convertToISO(timebit) {
+                                timebit.setHours(0, -timebit.getTimezoneOffset(), 0, 0);
+                                var isodate = timebit.toISOString().slice(0, 10);
+                                return isodate;
+                            }
+
+                            tomorrow = new Date();
+                            tomorrow.setDate(tomorrow.getDate() + 1);
+                            document.getElementById("movieDate").setAttribute("min", convertToISO(tomorrow));
+                        </script>
+                    </label>
+                    <br /> Time:
+                    <label>
+                        <input type="time" name="movieTime" value="00:00" />
+                    </label>
+                    <br /> Duration:
+                    <label>
+                        <input type="text" name="duration" />
+                    </label>
+                    <br /> Price:
+                    <label>
+                        <input type="text" name="price" />
+                    </label>
+                    <br /> Movie Hall:
+                    <label for="movieHall"></label><select id="movieHall"></select>
+                    <br />
+                    <input type="radio" name="movieType" value="Ordinary" checked="checked">Ordinary
+                    <input type="radio" name="movieType" value="Three D">Three D
+                    <br />
+                    <a href="#" title="Add Movie" class="modal-add" onclick="onClickAddMovie()">Add Movie</a>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
